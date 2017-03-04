@@ -1,0 +1,17 @@
+T__0=1
+T__1=2
+ASTERISK=3
+SLASH=4
+PLUS=5
+MINUS=6
+ID=7
+NAME=8
+NUMBER=9
+WHITESPACE=10
+'('=1
+')'=2
+'*'=3
+'/'=4
+'+'=5
+'-'=6
+' '=10

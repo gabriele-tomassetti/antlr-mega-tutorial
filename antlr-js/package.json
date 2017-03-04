@@ -1,0 +1,10 @@
+{
+  "name": "antlr-js-tutorial",
+  "version": "1.0.0",
+  "dependencies": {
+    "antlr4": "^4.6.0"
+  },
+  "devDependencies": {
+    "nodeunit": "^0.10.2"
+  }
+}
