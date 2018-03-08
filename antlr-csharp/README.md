@@ -23,3 +23,10 @@ The signature for `SpreadsheetErrorListener.SyntaxError` is also slightly differ
 // if you are generating the parser with the Java tool change the signature to the following
 public override void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
 ```
+
+#### Other useful links
+
+If you are still stuck with setting things up, these links may save you a tons of time:
+
+- [SO answer](https://stackoverflow.com/a/23313015/290460) how to deal with generated files by antlr4 in Visual Studio
+- [Windows ANTLR4 installation guideline](https://levlaz.org/setting-up-antlr4-on-windows/)
