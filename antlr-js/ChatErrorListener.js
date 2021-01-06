@@ -1,26 +1,21 @@
-const antlr4 = require('antlr4/index');
-const ErrorListener = require('antlr4/error/index');
-const ChatLexer = require('./ChatLexer');
-const ChatParser = require('./ChatParser');
-const ChatListener = require('./ChatListener').ChatListener;
+import antlr4 from 'antlr4';
+import ChatLexer from './ChatLexer.js';
+import ChatParser from './ChatParser.js';
+import ChatListener  from './ChatListener.js';
 
-ChatErrorListener = function(res) {
-    this.Res = res;
-    this.symbol = '';
-    ErrorListener.ErrorListener.call(this);
-	return this;
-};
+export default class ChatErrorErrorListener extends antlr4.error.ErrorListener {
+    constructor() {
+        super();
+        this.Res = res;
+        this.symbol = '';
+    }
 
-ChatErrorListener.prototype = Object.create(ErrorListener.ErrorListener.prototype);
-ChatErrorListener.prototype.constructor = ChatErrorListener;
-
-ChatErrorListener.prototype.syntaxError = function(recognizer, offendingSymbol, line, column, msg, e) {              
-    this.Res.write(msg);
-    
-    if(offendingSymbol == null)
-        this.symbol = recognizer.getTokenErrorDisplay(offendingSymbol);
-    else
-        this.symbol = offendingSymbol.text;
-};
-
-exports.ChatErrorListener = ChatErrorListener;
+    syntaxError(recognizer, offendingSymbol, line, column, msg, e) {            
+        this.Res.write(msg);
+        
+        if(offendingSymbol == null)
+            this.symbol = recognizer.getTokenErrorDisplay(offendingSymbol);
+        else
+            this.symbol = offendingSymbol.text;
+    }
+}

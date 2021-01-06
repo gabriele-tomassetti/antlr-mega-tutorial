@@ -1,6 +1,7 @@
 {
   "name": "antlr-js-tutorial",
   "version": "1.0.0",
+  "type": "module",
   "dependencies": {
     "antlr4": "^4.6.0"
   },

@@ -1,77 +1,73 @@
-const antlr4 = require('antlr4/index');
-const ChatLexer = require('./ChatLexer');
-const ChatParser = require('./ChatParser');
-var ChatListener = require('./ChatListener').ChatListener;
+import antlr4 from 'antlr4';
+import ChatLexer from './ChatLexer.js';
+import ChatParser from './ChatParser.js';
+import ChatListener  from './ChatListener.js';
 
-HtmlChatListener = function(res) {
-    this.Res = res;    
-    ChatListener.call(this);
-	return this;
-};
-
-HtmlChatListener.prototype = Object.create(ChatListener.prototype);
-HtmlChatListener.prototype.constructor = HtmlChatListener;
-
-HtmlChatListener.prototype.enterName = function(ctx) {          
-    this.Res.write("<strong>");    
-};
-HtmlChatListener.prototype.exitName = function(ctx) {      
-    this.Res.write(ctx.WORD().getText());
-    this.Res.write("</strong> ");
-}; 
-
-HtmlChatListener.prototype.enterColor = function(ctx) {     
-    var color = ctx.WORD().getText();             
-    ctx.text = '<span style="color: ' + color + '">';
-};
-
-HtmlChatListener.prototype.exitColor = function(ctx) {         
-    ctx.text += ctx.message().text;    
-    ctx.text += '</span>';
-};
-
-HtmlChatListener.prototype.exitEmoticon = function(ctx) {      
-    var emoticon = ctx.getText();        
+export default class HtmlChatListener extends ChatListener {    
+    constructor(res) {
+		super();
+		this.Res = res;
+	}
     
-    if(emoticon == ':-)' || emoticon == ':)')
-    {        
-        ctx.text = "🙂";
+    enterName(ctx) {          
+        this.Res.write("<strong>");    
     }
     
-    if(emoticon == ':-(' || emoticon == ':(')
-    {          
-        ctx.text = "🙁";
+    exitName(ctx) {      
+        this.Res.write(ctx.WORD().getText());
+        this.Res.write("</strong> ");
     }
-}; 
-
-HtmlChatListener.prototype.exitMessage = function(ctx) {                
-    var text = '';
-
-    for (var index = 0; index <  ctx.children.length; index++ ) {
-        if(ctx.children[index].text != null)
-            text += ctx.children[index].text;
+    
+    enterColor(ctx) {     
+        var color = ctx.WORD().getText();             
+        ctx.text = '<span style="color: ' + color + '">';
+    }
+    
+    exitColor(ctx) {         
+        ctx.text += ctx.message().text;    
+        ctx.text += '</span>';
+    }
+    
+    exitEmoticon(ctx) {      
+        var emoticon = ctx.getText();        
+        
+        if(emoticon == ':-)' || emoticon == ':)')
+        {        
+            ctx.text = "🙂";
+        }
+        
+        if(emoticon == ':-(' || emoticon == ':(')
+        {          
+            ctx.text = "🙁";
+        }
+    }
+    
+    exitMessage(ctx) {                
+        var text = '';
+    
+        for (var index = 0; index <  ctx.children.length; index++ ) {
+            if(ctx.children[index].text != null)
+                text += ctx.children[index].text;
+            else
+                text += ctx.children[index].getText();
+        }
+    
+        if(ctx.parentCtx instanceof ChatParser.LineContext == false)
+        {
+            ctx.text = text;        
+        }    
         else
-            text += ctx.children[index].getText();
+        {
+            this.Res.write(text);
+            this.Res.write("</p>");
+        }
     }
-
-    if(ctx.parentCtx instanceof ChatParser.ChatParser.LineContext == false)
-    {
-        ctx.text = text;        
-    }    
-    else
-    {
-        this.Res.write(text);
-        this.Res.write("</p>");
+    
+    enterCommand(ctx) {          
+        if(ctx.SAYS() != null)
+            this.Res.write(ctx.SAYS().getText() + ':' + '<p>');
+    
+        if(ctx.SHOUTS() != null)
+            this.Res.write(ctx.SHOUTS().getText() + ':' + '<p style="text-transform: uppercase">');
     }
-};
-
-HtmlChatListener.prototype.enterCommand = function(ctx) {          
-    if(ctx.SAYS() != null)
-        this.Res.write(ctx.SAYS().getText() + ':' + '<p>');
-
-    if(ctx.SHOUTS() != null)
-        this.Res.write(ctx.SHOUTS().getText() + ':' + '<p style="text-transform: uppercase">');
-};
-
-
-exports.HtmlChatListener = HtmlChatListener;
+}
