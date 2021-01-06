@@ -4,7 +4,7 @@ import ChatParser from './ChatParser.js';
 import ChatListener  from './ChatListener.js';
 
 export default class ChatErrorErrorListener extends antlr4.error.ErrorListener {
-    constructor() {
+    constructor(res) {
         super();
         this.Res = res;
         this.symbol = '';

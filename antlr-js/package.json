@@ -6,6 +6,9 @@
     "antlr4": "^4.9.0"
   },
   "devDependencies": {
-    "nodeunit": "^0.10.2"
-  }
+    "mocha": "^8.2.1"
+  },
+  "scripts": {
+      "test": "mocha"
+  }  
 }
