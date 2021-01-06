@@ -18,7 +18,9 @@ namespace AntlrTutorial
             Writer = writer;
         }
 
-        public override void SyntaxError(IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
+        // if you are generating the parser with the Visual Studio ANTLR Extension by Sam Harwell
+        // public override void SyntaxError(IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
+        public override void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)        
         {
             Writer.WriteLine(msg);
 

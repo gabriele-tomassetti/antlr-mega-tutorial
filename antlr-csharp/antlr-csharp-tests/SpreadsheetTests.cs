@@ -34,7 +34,8 @@ namespace AntlrTutorial
             StringWriter writer = new StringWriter();
             errorListener = new SpreadsheetErrorListener(writer);
             lexer.RemoveErrorListeners();
-            //markupLexer.addErrorListener(errorListener);
+            // uncomment this if you want to see errors from the lexer
+            //lexer.addErrorListener(errorListener);
             parser.RemoveErrorListeners();
             parser.AddErrorListener(errorListener);            
         }
@@ -109,7 +110,7 @@ namespace AntlrTutorial
 
             PowerExpContext context = parser.expression() as PowerExpContext;
 
-            SpreadsheetVisitor visitor = new SpreadsheetVisitor();
+            DoubleSpreadsheetVisitor visitor = new DoubleSpreadsheetVisitor();
             double result = visitor.VisitPowerExp(context);
 
             Assert.Equal(double.Parse("262144"), result);
@@ -122,7 +123,7 @@ namespace AntlrTutorial
 
             FunctionExpContext context = parser.expression() as FunctionExpContext;
 
-            SpreadsheetVisitor visitor = new SpreadsheetVisitor();
+            DoubleSpreadsheetVisitor visitor = new DoubleSpreadsheetVisitor();
             double result = visitor.VisitFunctionExp(context);
 
             Assert.Equal(result, double.Parse("2"));
@@ -135,7 +136,7 @@ namespace AntlrTutorial
 
             FunctionExpContext context = parser.expression() as FunctionExpContext;
 
-            SpreadsheetVisitor visitor = new SpreadsheetVisitor();
+            DoubleSpreadsheetVisitor visitor = new DoubleSpreadsheetVisitor();
             double result = visitor.VisitFunctionExp(context);
 
             CommonTokenStream ts = (CommonTokenStream)parser.InputStream;
@@ -155,10 +156,10 @@ namespace AntlrTutorial
 
             ExpressionContext context = parser.expression();
 
-            SpreadsheetVisitor visitor = new SpreadsheetVisitor();
+            DoubleSpreadsheetVisitor visitor = new DoubleSpreadsheetVisitor();
             double result = visitor.Visit(context);            
 
-            Assert.Equal("1.01072386539177", result.ToString(System.Globalization.CultureInfo.GetCultureInfo("en-US").NumberFormat));            
+            Assert.Equal("1.0107238653917732", result.ToString(System.Globalization.CultureInfo.GetCultureInfo("en-US").NumberFormat));            
         }
     }
 }

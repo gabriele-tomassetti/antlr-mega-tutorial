@@ -15,7 +15,7 @@ namespace AntlrTutorial
             SpreadsheetParser spreadsheetParser = new SpreadsheetParser(commonTokenStream);
 
             SpreadsheetParser.ExpressionContext expressionContext = spreadsheetParser.expression();
-            SpreadsheetVisitor visitor = new SpreadsheetVisitor();
+            DoubleSpreadsheetVisitor visitor = new DoubleSpreadsheetVisitor();
 
             Console.WriteLine(visitor.Visit(expressionContext));
         }
