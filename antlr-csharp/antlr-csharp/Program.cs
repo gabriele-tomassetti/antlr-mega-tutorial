@@ -9,7 +9,7 @@ namespace AntlrTutorial
         {
             string input = "log(10 + A1 * 35 + (5.4 - 7.4))";
 
-            AntlrInputStream inputStream = new AntlrInputStream(input);
+            ICharStream inputStream = CharStreams.fromString(input);
             SpreadsheetLexer spreadsheetLexer = new SpreadsheetLexer(inputStream);            
             CommonTokenStream commonTokenStream = new CommonTokenStream(spreadsheetLexer);
             SpreadsheetParser spreadsheetParser = new SpreadsheetParser(commonTokenStream);

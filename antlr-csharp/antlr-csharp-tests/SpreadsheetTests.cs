@@ -26,7 +26,7 @@ namespace AntlrTutorial
 
         private void setup(String input)
         {
-            AntlrInputStream inputStream = new AntlrInputStream(input);
+            ICharStream inputStream = CharStreams.fromString(input);
             lexer = new SpreadsheetLexer(inputStream);
             CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
             parser = new SpreadsheetParser(commonTokenStream);            
