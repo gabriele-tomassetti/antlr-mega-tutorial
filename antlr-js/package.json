@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "antlr4": "^4.6.0"
+    "antlr4": "^4.9.0"
   },
   "devDependencies": {
     "nodeunit": "^0.10.2"
