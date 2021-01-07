@@ -46,6 +46,8 @@ test {
     }
 }
 
+// this is not stricly necessary but it is useful if you are not using an IDE
+// it will create a JAR with all dependencies included
 task fatJar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'me.tomassetti.examples.MarkupParser.App'

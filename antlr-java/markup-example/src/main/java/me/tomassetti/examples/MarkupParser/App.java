@@ -1,6 +1,4 @@
 package me.tomassetti.examples.MarkupParser;
-import java.io.PrintWriter;
-
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 

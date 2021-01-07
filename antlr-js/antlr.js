@@ -4,7 +4,6 @@ const { CommonTokenStream, InputStream } = antlr4;
 import ChatLexer from './ChatLexer.js';
 import ChatParser from './ChatParser.js';
 import HtmlChatListener from './HtmlChatListener.js';
-import ChatErrorListener from './ChatErrorListener.js';
 
 createServer((req, res) => {
    

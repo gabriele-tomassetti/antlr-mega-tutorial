@@ -13,7 +13,7 @@ Instead, if you you want to generate the parser and lexer directly with the ANTL
 antlr4 -Dlanguage=CSharp Spreadsheet.g4 -no-listener -visitor -package AntlrTutorial
 ```
 
-Notice that both extensions comes with their own internal ANTLR tool for ease of use. This way you do not need to have ANTLR installed in your system. However, this mean that the ANTLR version included might be outdated. You can check the version mentioned in the generated parser. The Visual Studio extension uses the custom ANTLR Sharwell tool, while the Visual Studio Code uses the ANTLR Standard tool. 
+Notice that both extensions comes with their own internal ANTLR tool for ease of use. This way you do not need to have ANTLR installed in your system. However, this mean that the ANTLR version included might be outdated. You can check the version mentioned in the generated parser file. This is relevant to pick the correct version of the ANTLR4 runtime on Nuget. The Visual Studio extension uses the custom ANTLR Sharwell tool, while the Visual Studio Code uses the ANTLR Standard tool.
 
 If you are using Visual Studio Code, or you want to use the command line, you can build the project as any other .NET Core/5 project.
 
@@ -30,7 +30,6 @@ dotnet test
 ## Picking the correct runtime (i.e. Nuget package)
 
 You must also choose the correct runtime, depending on which extension you use, because they are not all the same. If you are using the Visual Studio Extension, use the older [ANTLR 4 Runtime](https://www.nuget.org/packages/Antlr4.Runtime/) by sharwell. In all other cases, that is if you use the Visual Studio Code extension or you do everything manually you must use the [ANTLR4 Standard Runtime](https://www.nuget.org/packages/Antlr4.Runtime.Standard/).
-
 
 ## Small differences
 
