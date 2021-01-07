@@ -5,33 +5,15 @@ import org.antlr.v4.runtime.tree.*;
 
 import java.io.StringWriter;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * Unit test for simple App.
+ * Unit tests for parser.
  */
-public class AppTest extends TestCase
+public class AppTest
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }            
-    
     private MarkupParser setup(String input)
     {            
         ANTLRInputStream inputStream = new ANTLRInputStream(input);
@@ -42,6 +24,7 @@ public class AppTest extends TestCase
         StringWriter writer = new StringWriter();
         this.errorListener = new MarkupErrorListener(writer);
         markupLexer.removeErrorListeners();
+        // uncomment this line if you want to see errors in the lexer
         //markupLexer.addErrorListener(errorListener);
         markupParser.removeErrorListeners();
         markupParser.addErrorListener(errorListener);
@@ -52,6 +35,7 @@ public class AppTest extends TestCase
     private MarkupErrorListener errorListener;
     private MarkupLexer markupLexer;
 
+    @Test
     public void testText()
     {
         MarkupParser parser = setup("anything in here");
@@ -61,6 +45,7 @@ public class AppTest extends TestCase
         assertEquals("",this.errorListener.getSymbol());
     }
 
+    @Test
     public void testInvalidText()
     {
         MarkupParser parser = setup("[anything in here");
@@ -73,6 +58,7 @@ public class AppTest extends TestCase
         assertEquals("[",this.errorListener.getSymbol());
     }
 
+    @Test
     public void testWrongMode()
     {
         MarkupParser parser = setup("author=\"john\"");                
@@ -85,6 +71,7 @@ public class AppTest extends TestCase
         assertEquals("author=\"john\"",this.errorListener.getSymbol());
     }
 
+    @Test
     public void testAttribute()
     {
         MarkupParser parser = setup("author=\"john\"");
@@ -101,6 +88,7 @@ public class AppTest extends TestCase
         assertEquals("",this.errorListener.getSymbol());
     }
 
+    @Test
     public void testInvalidAttribute()
     {
         MarkupParser parser = setup("author=/\"john\"");
