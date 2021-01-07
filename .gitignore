@@ -1,1 +1,10 @@
 .vscode
+*.interp
+antlr-js/package-lock.json
+antlr-java/markup-example/markup-example.generated.iml
+antlr-java/markup-example/markup-example.iml
+antlr-java/markup-example/markup-example.main.iml
+antlr-java/markup-example/markup-example.test.iml
+antlr-java/markup-example/markup-example-gradle.ipr
+antlr-java/markup-example/build/
+antlr-java/markup-example/.gradle/

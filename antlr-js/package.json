@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "antlr4": "^4.9.0"
+    "antlr4": "^4.9.1"
   },
   "devDependencies": {
     "mocha": "^8.2.1"
   },
   "scripts": {
-      "test": "mocha"
-  }  
+    "test": "mocha"
+  }
 }

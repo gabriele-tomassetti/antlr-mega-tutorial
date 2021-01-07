@@ -4,16 +4,14 @@ plugins {
     id 'idea'
 }
 
-ext.antlrVersion = '4.9'
-
 repositories {
     mavenCentral()
     jcenter()
 }
 
 dependencies {
-    antlr "org.antlr:antlr4:4.9"
-    compile "org.antlr:antlr4-runtime:4.9"
+    antlr "org.antlr:antlr4:4.9.1"
+    compile "org.antlr:antlr4-runtime:4.9.1"
     testImplementation(platform('org.junit:junit-bom:5.7.0'))
     testImplementation('org.junit.jupiter:junit-jupiter')
 }
@@ -21,7 +19,6 @@ dependencies {
 generateGrammarSource {
     maxHeapSize = "128m"
     arguments += ['-package', 'me.tomassetti.examples.MarkupParser', '-visitor', '-no-listener']
-    //outputDirectory = new File("generated-src/antlr/main/".toString())
 }
 compileJava.dependsOn generateGrammarSource
 
