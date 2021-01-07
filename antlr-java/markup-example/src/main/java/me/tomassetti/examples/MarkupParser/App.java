@@ -8,7 +8,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        ANTLRInputStream inputStream = new ANTLRInputStream(
+        CharStream inputStream = CharStreams.fromString(
             "I would like to [b]emphasize[/b] this and [u]underline [b]that[/b][/u]. " +
             "Let's not forget to quote: [quote author=\"John\"]You're wrong![/quote]");
         MarkupLexer markupLexer = new MarkupLexer(inputStream);

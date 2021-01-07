@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 public class AppTest
 {
     private MarkupParser setup(String input)
-    {            
-        ANTLRInputStream inputStream = new ANTLRInputStream(input);
+    {
+        CharStream inputStream = CharStreams.fromString(input);
         this.markupLexer = new MarkupLexer(inputStream);
         CommonTokenStream commonTokenStream = new CommonTokenStream(markupLexer);
         MarkupParser markupParser = new MarkupParser(commonTokenStream);
