@@ -46,7 +46,7 @@ public class MarkupVisitor extends MarkupParserBaseVisitor<String>
                 String attribute = context.attribute().STRING().getText();
                 attribute = attribute.substring(1,attribute.length()-1);
                 startDelimiter = System.lineSeparator() + "> ";
-                endDelimiter = System.lineSeparator() + "> " + System.lineSeparator() + "> – "
+                endDelimiter = System.lineSeparator() + "> " + System.lineSeparator() + "> - "
                              + attribute + System.lineSeparator();
             break;
         } 
