@@ -11,7 +11,7 @@ def main(argv):
     parser = ChatParser(stream)
     tree = parser.chat()
 
-    output = open("output.html","w")
+    output = open("output.html","w", encoding='utf-8')
     
     htmlChat = HtmlChatListener(output)
     walker = ParseTreeWalker()
